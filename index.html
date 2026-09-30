@@ -205,43 +205,53 @@
   .warn p{font-size:21px;line-height:1.45;margin-top:11px;color:#3A1200;font-weight:800;}
   .warn p u{text-decoration:none;background:rgba(255,255,255,.74);border-radius:6px;padding:1px 6px;}
 
-  /* テンプレ骨組みの図 */
-  .skl{background:#fff;border-radius:16px;overflow:hidden;color:var(--ink);}
-  .skl-h{
-    display:flex;align-items:center;gap:8px;padding:9px 14px;
-    font-size:12.5px;letter-spacing:.07em;
+  /* どこに出すか（2ステップ） */
+  .dest{display:flex;flex-direction:column;gap:11px;}
+  .dst{
+    background:rgba(255,255,255,.085);border:1.5px solid rgba(255,255,255,.22);
+    border-radius:15px;padding:12px 13px 14px;
+    display:flex;flex-direction:column;gap:9px;
   }
-  .skl .same .skl-h{background:#F1F5FB;color:#4E6580;border-bottom:1px solid var(--line-2);}
-  .skl .same .skl-h em{font-style:normal;width:7px;height:7px;border-radius:50%;background:#A9BAD0;}
-  .skl-rows{padding:6px 14px 10px;}
-  .skl .row{
-    font-size:14.5px;line-height:1.5;padding:5px 0;
-    border-bottom:1px dashed #E7EDF6;
+  .dst.acc{border-color:rgba(43,217,111,.55);}
+  .dst .dk{display:flex;align-items:center;gap:9px;font-size:14.5px;letter-spacing:.06em;color:#DCE8F7;}
+  .dst .dk em{
+    font-style:normal;flex:0 0 auto;width:22px;height:22px;border-radius:8px;
+    background:#fff;color:#103B87;display:inline-flex;align-items:center;justify-content:center;
+    font-size:13px;line-height:1;font-weight:800;
   }
-  .skl .row:last-child{border-bottom:0;}
-  .skl .same .row{color:#5F7286;}
-  .skl .add{background:linear-gradient(180deg,#FFF4EB,#FFE9DA);border-top:2.5px solid var(--orange);}
-  .skl .add .skl-h{background:#A83C06;color:#fff;font-weight:800;}
-  .skl .add .skl-h em{
-    font-style:normal;width:16px;height:16px;border-radius:50%;background:#fff;color:#A83C06;
-    display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1;
-  }
-  .skl .add .row{color:#8A3305;font-size:15.5px;font-weight:800;border-bottom-color:#F6CFB0;}
+  .dst .dsub{font-size:13.5px;line-height:1.7;color:#CFDDF0;}
 
-  /* 1投稿にまとめる図 */
-  .one{
-    background:rgba(255,255,255,.085);border:1.5px dashed rgba(255,255,255,.34);
+  /* LINEボタン */
+  .lcta{
+    display:flex;flex-direction:column;gap:9px;text-decoration:none;color:#06341B;
+    background:linear-gradient(180deg,#2BD96F,#06C755);
     border-radius:15px;padding:13px 14px;
+    box-shadow:0 14px 26px -12px rgba(6,199,85,.95);
   }
-  .one .one-k{display:block;font-size:14px;color:#BFD2EA;letter-spacing:.05em;margin-bottom:10px;}
-  .one .one-in{display:flex;align-items:center;gap:9px;}
-  .one .oc{
-    flex:1 1 0;min-width:0;text-align:center;border-radius:11px;padding:11px 6px;
-    font-size:15.5px;line-height:1.35;font-weight:800;
+  .lcta .lc-top{display:flex;align-items:center;gap:12px;}
+  .lcta .ic{
+    flex:0 0 auto;width:44px;height:44px;border-radius:13px;background:#fff;
+    display:flex;align-items:center;justify-content:center;
   }
-  .one .oc.a{background:#fff;color:#103B87;}
-  .one .oc.b{background:linear-gradient(180deg,#FFA65E,#FF8A38);color:#3A1200;}
-  .one .plus{flex:0 0 auto;font-size:19px;color:#9FB8D8;line-height:1;}
+  .lcta .ic svg{width:26px;height:26px;display:block;}
+  .lcta .bd{flex:1 1 auto;min-width:0;}
+  .lcta .k{display:block;font-size:19px;line-height:1.35;font-weight:800;}
+  .lcta .t{display:block;font-size:12.5px;line-height:1.4;margin-top:2px;}
+  .lcta .go{
+    flex:0 0 auto;background:#06341B;color:#fff;border-radius:999px;
+    font-size:13px;padding:7px 14px;line-height:1;letter-spacing:.06em;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .lcta .go::after{
+    content:"";width:0;height:0;
+    border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid #fff;
+  }
+  .lcta .u{
+    display:block;background:#fff;border-radius:9px;
+    padding:8px 10px;font-size:11.5px;line-height:1.6;color:#4A6081;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-weight:600;word-break:break-all;
+  }
 
   .notes{display:flex;flex-direction:column;gap:9px;}
   .note{
@@ -377,9 +387,16 @@
     .lk .u{font-size:10.5px;padding:7px 9px;}
     .grp{font-size:14.5px;padding:10px 11px;}
     .warn p{font-size:18px;}
-    .skl .row{font-size:13.5px;}
-    .skl .add .row{font-size:14.5px;}
-    .one .oc{font-size:13.5px;padding:10px 4px;}
+    .dst{padding:11px 11px 13px;}
+    .dst .grp{font-size:13px;padding:10px 10px;gap:8px;}
+    .dst .dk{font-size:13.5px;}
+    .dst .dsub{font-size:13px;}
+    .lcta{padding:12px 12px;}
+    .lcta .ic{width:40px;height:40px;border-radius:12px;}
+    .lcta .k{font-size:17px;}
+    .lcta .t{font-size:11.5px;}
+    .lcta .go{font-size:12px;padding:6px 11px;}
+    .lcta .u{font-size:10.5px;padding:7px 9px;}
     .note{font-size:13px;}
     .tpl-head b{font-size:17px;}
     .tpl-head span{font-size:12.5px;}
@@ -447,7 +464,7 @@
           <path d="M11 12h10M11 16.5h7" stroke="#FF8B3E" stroke-width="2.2" stroke-linecap="round"/>
         </svg>
         <b>面談報告</b>
-        <i>専用テンプレ</i>
+        <i>＋動画依頼</i>
       </div>
     </div>
   </section>
@@ -552,57 +569,56 @@
     <div class="ph-head">
       <div class="ph-no">3</div>
       <div class="ph-tx">
-        <h2>面談報告＋動画依頼</h2>
-        <p>報告と一緒に、松葉さんへ動画を依頼します。</p>
+        <h2>面談報告＋動画依頼<span class="nb">（個人LINE）</span></h2>
+        <p>報告はいつものグループへ。動画の依頼は松葉さん本人のLINEへ直接送ります。</p>
       </div>
     </div>
     <div class="ph-body">
 
-      <div class="grp">
-        <span class="gic">
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <circle cx="5.6" cy="5.2" r="2.6" fill="#fff"/>
-            <circle cx="11.2" cy="6" r="2.1" fill="#fff" opacity=".8"/>
-            <path d="M1.4 13.4c.5-2.5 2.2-3.8 4.2-3.8s3.7 1.3 4.2 3.8z" fill="#fff"/>
-            <path d="M11 9.7c1.7 0 3 1 3.5 3.1h-2.8" fill="#fff" opacity=".8"/>
-          </svg>
-        </span>
-        松葉さんローンチ面談報告用グループ
-      </div>
-
       <div class="warn">
         <span class="tag"><em>!</em>いつもと違うところ</span>
-        <p>いつものテンプレは使いません。<u>専用テンプレ</u>で報告します。</p>
+        <p>成約したお客様は<u>全員</u>、<span class="nb">松葉さん本人</span>のフォロー動画。</p>
+        <p>依頼は<u>個人LINE</u>で直接します。</p>
       </div>
 
-      <div class="skl">
-        <div class="same">
-          <div class="skl-h"><em></em>いつもと同じ</div>
-          <div class="skl-rows">
-            <div class="row">【報告】</div>
-            <div class="row">日時：</div>
-            <div class="row">導線：</div>
-            <div class="row">LINE名：</div>
-            <div class="row">成約結果：</div>
-            <div class="row">録画：</div>
+      <div class="dest">
+        <div class="dst">
+          <span class="dk"><em>1</em>面談の報告</span>
+          <div class="grp">
+            <span class="gic">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <circle cx="5.6" cy="5.2" r="2.6" fill="#fff"/>
+                <circle cx="11.2" cy="6" r="2.1" fill="#fff" opacity=".8"/>
+                <path d="M1.4 13.4c.5-2.5 2.2-3.8 4.2-3.8s3.7 1.3 4.2 3.8z" fill="#fff"/>
+                <path d="M11 9.7c1.7 0 3 1 3.5 3.1h-2.8" fill="#fff" opacity=".8"/>
+              </svg>
+            </span>
+            松葉さんローンチ面談報告用グループ
           </div>
+          <span class="dsub">いつも通りの報告でOK。決まったテンプレはありません。</span>
         </div>
-        <div class="add">
-          <div class="skl-h"><em>+</em>ここが今回の追加（録画：の下）</div>
-          <div class="skl-rows">
-            <div class="row">@美菜さん</div>
-            <div class="row">【依頼】</div>
-            <div class="row">撮ってほしい動画の内容</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="one">
-        <span class="one-k">1つの投稿にまとめて出す</span>
-        <div class="one-in">
-          <span class="oc a">報告</span>
-          <span class="plus">＋</span>
-          <span class="oc b">依頼（@美菜さん）</span>
+        <div class="dst acc">
+          <span class="dk"><em>2</em>動画の依頼</span>
+          <span class="dsub">グループには出しません。松葉さんの個人LINEで直接お願いします。</span>
+          <a class="lcta" href="https://line.me/ti/p/E82XrRsHKq" target="_blank" rel="noopener">
+            <span class="lc-top">
+              <span class="ic">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3.2c-5.2 0-9.4 3.4-9.4 7.6 0 3.8 3.3 6.9 7.9 7.5.9.2.8.6.7 1.2l-.2 1.2c-.1.5.3.7.8.5 2.6-1.1 6.1-3.5 7.7-5.4 1.3-1.5 1.9-2.9 1.9-5 0-4.2-4.2-7.6-9.4-7.6z" fill="#06C755"/>
+                  <circle cx="8.3" cy="10.6" r="1.25" fill="#fff"/>
+                  <circle cx="12" cy="10.6" r="1.25" fill="#fff"/>
+                  <circle cx="15.7" cy="10.6" r="1.25" fill="#fff"/>
+                </svg>
+              </span>
+              <span class="bd">
+                <b class="k">このLINEで依頼</b>
+                <span class="t">タップでLINEが開きます</span>
+              </span>
+              <span class="go">開く</span>
+            </span>
+            <span class="u">https://line.me/ti/p/E82XrRsHKq</span>
+          </a>
         </div>
       </div>
 
@@ -614,7 +630,7 @@
     </div>
   </section>
 
-  <!-- ===== 専用テンプレ ===== -->
+  <!-- ===== 依頼テンプレ ===== -->
   <div class="tplwrap">
   <section class="card tpl">
     <div class="tpl-head">
@@ -624,19 +640,12 @@
           <rect x="5.4" y="4.4" width="9" height="11" rx="1.8" fill="#1B5CDE" stroke="#fff" stroke-width="1.8"/>
         </svg>
       </span>
-      <b>専用テンプレ</b>
-      <span>そのままコピーして使う</span>
+      <b>依頼テンプレ</b>
+      <span>コピーして松葉さんのLINEへ</span>
     </div>
-<pre id="tplText">【報告】
-日時：10/2 11:00
-導線：🟣📅【@317xrqnz】SNSコンサル『AIマネタイズの教科書』　<span class="nb">松葉美菜さん</span>用
-LINE名：
-成約結果：
-録画：
-
-@美菜さん
-【依頼】
-以下内容で動画撮影をお願いします！
+<pre id="tplText">【依頼】
+〇〇さんへの動画撮影をお願いします！
+伝えて欲しい内容は以下です！
 ・自分が本当に稼げるかの不安が拭いきれていないので、生徒実績が出ていることや<span class="nb">松葉さん</span>自身も結果が出ずに苦労したけど、ONEでは稼げたという内容の話
 ・半年で50万円稼いで脱サラしたいらしいので、そこを目指して一緒に頑張りましょうという話</pre>
     <div class="copy-wrap">
@@ -646,7 +655,7 @@ LINE名：
       </button>
       <span class="sr" id="copyLive" aria-live="polite"></span>
     </div>
-    <p class="tpl-foot">日時・LINE名・成約結果の記入欄と、<b>【依頼】の「・」から始まる2行</b>は記入例です。案件ごとに書き換えてください。@美菜さん＝<span class="nb">松葉美菜さん</span>のメンションです。</p>
+    <p class="tpl-foot"><b>〇〇</b>はお客様の名前を入れてください。<br><b>「・」から始まる2行</b>は記入例です。案件ごとに書き換えてください。</p>
   </section>
   </div>
 
@@ -654,7 +663,7 @@ LINE名：
   <div class="sec-ttl"><i class="bar"></i><h2>忘れずに</h2><i class="fill"></i></div>
   <section class="chk">
     <div class="chk-i" role="checkbox" tabindex="0" aria-checked="false"><span class="box"></span><span class="t">面談後の特典配布<small class="how">特典配布はUTAGEのアクションで設定</small></span></div>
-    <div class="chk-i" role="checkbox" tabindex="0" aria-checked="false"><span class="box"></span><span class="t">松葉さんにフォロー動画の撮影依頼をかける（上記報告用テンプレで）</span></div>
+    <div class="chk-i" role="checkbox" tabindex="0" aria-checked="false"><span class="box"></span><span class="t">松葉さんにフォロー動画の撮影依頼をかける<small class="how">上記の依頼テンプレを松葉さんの個人LINEへ</small></span></div>
   </section>
 
   <div class="last">
@@ -665,16 +674,9 @@ LINE名：
 <script>
 (function(){
   var TPL_LINES = [
-    "【報告】",
-    "日時：10/2 11:00",
-    "導線：🟣📅【@317xrqnz】SNSコンサル『AIマネタイズの教科書』　松葉美菜さん用",
-    "LINE名：",
-    "成約結果：",
-    "録画：",
-    "",
-    "@美菜さん",
     "【依頼】",
-    "以下内容で動画撮影をお願いします！",
+    "〇〇さんへの動画撮影をお願いします！",
+    "伝えて欲しい内容は以下です！",
     "・自分が本当に稼げるかの不安が拭いきれていないので、生徒実績が出ていることや松葉さん自身も結果が出ずに苦労したけど、ONEでは稼げたという内容の話",
     "・半年で50万円稼いで脱サラしたいらしいので、そこを目指して一緒に頑張りましょうという話"
   ];
