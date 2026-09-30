@@ -327,8 +327,13 @@
   .chk-i .box::after{
     content:"";position:absolute;left:8px;top:3px;width:8px;height:14px;
     border-right:3px solid var(--green);border-bottom:3px solid var(--green);
-    border-radius:1px;transform:rotate(42deg);
+    border-radius:1px;transform:rotate(42deg) scale(.4);opacity:0;
+    transition:opacity .15s ease,transform .15s ease;
   }
+  .chk-i{cursor:pointer;-webkit-user-select:none;user-select:none;}
+  .chk-i:focus-visible{outline:3px solid var(--green);outline-offset:2px;}
+  .chk-i.on .box::after{opacity:1;transform:rotate(42deg) scale(1);}
+  .chk-i.on{background:#F3FBF7;border-color:var(--green);}
   .chk-i span.t{font-size:17px;line-height:1.5;font-weight:800;}
   .chk-i span.t small.how{display:block;font-size:13.5px;font-weight:700;color:#4A5A70;margin-top:3px;}
 
@@ -602,7 +607,7 @@
       </div>
 
       <div class="notes">
-        <div class="note"><span class="nk">ねらい</span><b>クーオフ</b>＝クーリングオフ。決まった売上を取りこぼさないための動画です。</div>
+        <div class="note"><span class="nk">ねらい</span>クーオフ防止のためです。</div>
         <div class="note"><span class="nk">応用</span>成約できそうなお客様には、成約前に頼んでもOK。使うかは各クローザーの判断です。</div>
       </div>
 
@@ -648,13 +653,12 @@ LINE名：
   <!-- ===== 忘れずに ===== -->
   <div class="sec-ttl"><i class="bar"></i><h2>忘れずに</h2><i class="fill"></i></div>
   <section class="chk">
-    <div class="chk-i"><span class="box"></span><span class="t">面談後の特典配布<small class="how">特典配布はUTAGEのアクションで設定</small></span></div>
-    <div class="chk-i"><span class="box"></span><span class="t">松葉さんにフォロー動画の撮影依頼をかける</span></div>
+    <div class="chk-i" role="checkbox" tabindex="0" aria-checked="false"><span class="box"></span><span class="t">面談後の特典配布<small class="how">特典配布はUTAGEのアクションで設定</small></span></div>
+    <div class="chk-i" role="checkbox" tabindex="0" aria-checked="false"><span class="box"></span><span class="t">松葉さんにフォロー動画の撮影依頼をかける（上記報告用テンプレで）</span></div>
   </section>
 
   <div class="last">
     <p>成約したお客様は<u>全員</u>、<span class="nb">松葉さん本人</span>に動画を撮ってもらいます。</p>
-    <small>※社内向け資料</small>
   </div>
 
 </div>
@@ -737,6 +741,23 @@ LINE名：
       fallback();
     }
   });
+})();
+</script>
+<script>
+(function(){
+  var items = document.querySelectorAll(".chk-i");
+  for (var i = 0; i < items.length; i++) {
+    (function(el){
+      function toggle(){
+        var on = el.classList.toggle("on");
+        el.setAttribute("aria-checked", on ? "true" : "false");
+      }
+      el.addEventListener("click", toggle);
+      el.addEventListener("keydown", function(e){
+        if (e.key === " " || e.key === "Enter") { e.preventDefault(); toggle(); }
+      });
+    })(items[i]);
+  }
 })();
 </script>
 </body>
