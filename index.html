@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>松葉さん動画ローンチ企画書図解</title>
+<style>
+  :root{
+    --ink:#0B1B33;
+    --ink-2:#22364F;
+    --sub:#54687F;
+    --line:#DFE7F2;
+    --line-2:#EDF2F9;
+    --blue:#1B5CDE;
+    --blue-d:#103B87;
+    --blue-s:#EDF3FE;
+    --blue-b:#CBDCF9;
+    --orange:#E8540A;
+    --orange-d:#9E3705;
+    --orange-s:#FFF2E8;
+    --green:#0A8A52;
+    --green-s:#E4F6EE;
+    --navy:#0C1D38;
+    --paper:#FFFFFF;
+    --r:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:#EEF3FA;
+    background-image:radial-gradient(900px 520px at 50% -8%, #FFFFFF 0%, #F3F7FC 46%, #E9F0F9 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,Meiryo,sans-serif;
+    font-weight:700;
+    line-height:1.65;
+    line-break:strict;
+    letter-spacing:.012em;
+    padding:26px 16px 36px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;}
+  ::selection{background:#CFE0FF;}
+
+  .card{
+    background:var(--paper);
+    border:1px solid #E3EAF5;
+    border-radius:var(--r);
+    box-shadow:0 1px 0 rgba(11,27,51,.03),0 18px 38px -20px rgba(11,27,51,.34);
+  }
+
+  /* ========== header ========== */
+  .head{position:relative;overflow:hidden;padding:30px 26px 22px;}
+  .head::before{
+    content:"";position:absolute;left:0;top:0;width:100%;height:6px;
+    background:linear-gradient(90deg,var(--blue-d) 0%,var(--blue) 46%,#F07A2B 72%,var(--orange) 100%);
+  }
+  .wm{position:absolute;right:-26px;top:-30px;width:210px;height:210px;pointer-events:none;}
+  .badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;position:relative;}
+  .badge{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--blue-d);color:#fff;
+    font-size:13px;padding:6px 14px;border-radius:999px;letter-spacing:.07em;
+  }
+  .badge i{width:6px;height:6px;border-radius:50%;background:#7EB0FF;flex:0 0 auto;}
+  h1{position:relative;font-size:44px;line-height:1.16;font-weight:800;letter-spacing:.002em;}
+  h1 .h1-pre{
+    display:block;font-size:20px;line-height:1.4;color:var(--blue-d);
+    letter-spacing:.05em;margin-bottom:6px;
+  }
+  .rule{height:1px;background:linear-gradient(90deg,var(--line),rgba(223,231,242,0));margin:18px 0 14px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 26px;position:relative;}
+  .meta .mi{display:flex;align-items:baseline;gap:10px;font-size:15px;color:var(--ink-2);}
+  .meta .mk{
+    font-size:11.5px;color:#fff;background:#5A6E87;border-radius:5px;
+    padding:3px 8px;letter-spacing:.1em;flex:0 0 auto;
+  }
+
+  /* ========== section title ========== */
+  .sec-ttl{display:flex;align-items:center;gap:11px;margin:32px 2px 14px;}
+  .sec-ttl .bar{width:5px;height:23px;border-radius:99px;background:linear-gradient(180deg,#3E7AEC,var(--blue-d));flex:0 0 auto;}
+  .sec-ttl h2{font-size:22px;font-weight:800;letter-spacing:.02em;flex:0 0 auto;}
+  .sec-ttl .fill{flex:1 1 auto;height:1px;background:linear-gradient(90deg,var(--line),rgba(223,231,242,0));}
+
+  /* ========== overview map ========== */
+  .map{padding:18px 16px 16px;}
+  .map-grid{display:grid;grid-template-columns:1fr 16px 1fr 16px 1fr;align-items:stretch;gap:0;}
+  .node{
+    background:linear-gradient(180deg,#FBFDFF,#F2F7FE);
+    border:1.5px solid var(--blue-b);border-radius:15px;
+    padding:13px 7px 12px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+  }
+  .node .no{
+    width:26px;height:26px;border-radius:9px;flex:0 0 auto;
+    background:linear-gradient(160deg,#2F72E4,var(--blue-d));color:#fff;
+    font-size:14px;display:flex;align-items:center;justify-content:center;line-height:1;
+  }
+  .node svg{width:32px;height:32px;display:block;}
+  .node b{font-size:14.5px;line-height:1.3;white-space:nowrap;}
+  .node i{font-style:normal;font-size:11px;color:#4E6580;line-height:1.35;white-space:nowrap;}
+  .node.acc{background:linear-gradient(180deg,#FFF9F5,#FFF0E5);border-color:#FBC9A3;}
+  .node.acc .no{background:linear-gradient(160deg,#FFA65E,#FF8A38);color:#3A1200;}
+  .node.acc i{color:var(--orange-d);}
+  .chev{display:flex;align-items:center;justify-content:center;}
+  .chev span{
+    display:block;width:0;height:0;
+    border-top:7px solid transparent;border-bottom:7px solid transparent;
+    border-left:9px solid #A8BEDB;
+  }
+
+  /* ========== phase ========== */
+  .ph{overflow:hidden;}
+  .ph-head{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:19px 20px 17px;
+    background:linear-gradient(180deg,#FCFDFF,#F3F8FE);
+    border-bottom:1px solid var(--line);
+  }
+  .ph-no{
+    flex:0 0 auto;width:48px;height:48px;border-radius:15px;
+    background:linear-gradient(160deg,#2F72E4,var(--blue-d));color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:25px;font-weight:800;line-height:1;
+    box-shadow:0 8px 16px -8px rgba(16,59,135,.85);
+  }
+  .ph-tx{flex:1 1 auto;min-width:0;}
+  .ph-tx h2{font-size:24px;line-height:1.32;font-weight:800;}
+  .ph-tx p{font-size:15.5px;line-height:1.6;color:var(--sub);margin-top:5px;}
+  .ph-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:12px;}
+
+  .rail{display:flex;flex-direction:column;align-items:center;gap:4px;padding:11px 0;}
+  .rail i{width:3px;height:6px;border-radius:2px;background:#BDCFE7;}
+  .rail .tip{
+    width:0;height:0;margin-top:2px;
+    border-left:9px solid transparent;border-right:9px solid transparent;
+    border-top:11px solid #9DB5D6;
+  }
+
+  /* ========== link card ========== */
+  .lk{
+    display:flex;flex-direction:column;gap:9px;text-decoration:none;color:inherit;
+    background:#F8FBFF;border:1.5px solid #D6E3F8;border-radius:15px;padding:13px 14px;
+  }
+  .lk-top{display:flex;align-items:center;gap:12px;}
+  .lk .ic{
+    flex:0 0 auto;width:44px;height:44px;border-radius:13px;background:#fff;
+    border:1.5px solid #D6E3F8;display:flex;align-items:center;justify-content:center;
+  }
+  .lk .ic svg{width:24px;height:24px;display:block;}
+  .lk .bd{flex:1 1 auto;min-width:0;}
+  .lk .k{display:block;font-size:17.5px;line-height:1.35;font-weight:800;}
+  .lk .t{display:block;font-size:12.5px;color:#4E6580;line-height:1.4;margin-top:2px;}
+  .lk .go{
+    flex:0 0 auto;background:var(--blue);color:#fff;border-radius:999px;
+    font-size:13px;padding:7px 14px;line-height:1;letter-spacing:.06em;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .lk .go::after{
+    content:"";width:0;height:0;
+    border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid #fff;
+  }
+  .lk .u{
+    display:block;background:#fff;border:1px solid #E2EAF6;border-radius:9px;
+    padding:8px 10px;font-size:11.5px;line-height:1.6;color:#4A6081;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-weight:600;word-break:break-all;
+  }
+
+  /* ========== phase 3 (dark) ========== */
+  .ph3{
+    background:linear-gradient(168deg,#16325C 0%,#0E2244 55%,#0A1830 100%);
+    border-color:#0A1830;color:#fff;
+    box-shadow:0 1px 0 rgba(11,27,51,.06),0 24px 46px -22px rgba(11,27,51,.6);
+  }
+  .ph3 .ph-head{background:rgba(255,255,255,.055);border-bottom-color:rgba(255,255,255,.16);}
+  .ph3 .ph-no{background:linear-gradient(160deg,#FFA65E,#FF8A38);color:#3A1200;box-shadow:0 8px 18px -8px rgba(232,84,10,.95);}
+  .ph3 .ph-tx p{color:#C8D8EE;}
+
+  .grp{
+    display:flex;align-items:center;gap:10px;
+    background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.26);
+    border-radius:13px;padding:11px 13px;font-size:15.5px;line-height:1.45;color:#fff;
+  }
+  .grp .gic{
+    flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .grp .gic svg{width:15px;height:15px;display:block;}
+
+  .warn{
+    background:linear-gradient(180deg,#FFA65E 0%,#FF8A38 100%);
+    border-radius:15px;padding:15px 16px 16px;color:#3A1200;
+    box-shadow:0 16px 30px -14px rgba(232,84,10,.95);
+  }
+  .warn .tag{
+    display:inline-flex;align-items:center;gap:7px;background:#fff;color:#A83C06;
+    font-size:13px;padding:5px 12px;border-radius:999px;letter-spacing:.06em;font-weight:800;
+  }
+  .warn .tag em{
+    font-style:normal;width:17px;height:17px;border-radius:50%;background:#C94A05;color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px;line-height:1;
+  }
+  .warn p{font-size:21px;line-height:1.45;margin-top:11px;color:#3A1200;font-weight:800;}
+  .warn p u{text-decoration:none;background:rgba(255,255,255,.74);border-radius:6px;padding:1px 6px;}
+
+  /* テンプレ骨組みの図 */
+  .skl{background:#fff;border-radius:16px;overflow:hidden;color:var(--ink);}
+  .skl-h{
+    display:flex;align-items:center;gap:8px;padding:9px 14px;
+    font-size:12.5px;letter-spacing:.07em;
+  }
+  .skl .same .skl-h{background:#F1F5FB;color:#4E6580;border-bottom:1px solid var(--line-2);}
+  .skl .same .skl-h em{font-style:normal;width:7px;height:7px;border-radius:50%;background:#A9BAD0;}
+  .skl-rows{padding:6px 14px 10px;}
+  .skl .row{
+    font-size:14.5px;line-height:1.5;padding:5px 0;
+    border-bottom:1px dashed #E7EDF6;
+  }
+  .skl .row:last-child{border-bottom:0;}
+  .skl .same .row{color:#5F7286;}
+  .skl .add{background:linear-gradient(180deg,#FFF4EB,#FFE9DA);border-top:2.5px solid var(--orange);}
+  .skl .add .skl-h{background:#A83C06;color:#fff;font-weight:800;}
+  .skl .add .skl-h em{
+    font-style:normal;width:16px;height:16px;border-radius:50%;background:#fff;color:#A83C06;
+    display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1;
+  }
+  .skl .add .row{color:#8A3305;font-size:15.5px;font-weight:800;border-bottom-color:#F6CFB0;}
+
+  /* 1投稿にまとめる図 */
+  .one{
+    background:rgba(255,255,255,.085);border:1.5px dashed rgba(255,255,255,.34);
+    border-radius:15px;padding:13px 14px;
+  }
+  .one .one-k{display:block;font-size:14px;color:#BFD2EA;letter-spacing:.05em;margin-bottom:10px;}
+  .one .one-in{display:flex;align-items:center;gap:9px;}
+  .one .oc{
+    flex:1 1 0;min-width:0;text-align:center;border-radius:11px;padding:11px 6px;
+    font-size:15.5px;line-height:1.35;font-weight:800;
+  }
+  .one .oc.a{background:#fff;color:#103B87;}
+  .one .oc.b{background:linear-gradient(180deg,#FFA65E,#FF8A38);color:#3A1200;}
+  .one .plus{flex:0 0 auto;font-size:19px;color:#9FB8D8;line-height:1;}
+
+  .notes{display:flex;flex-direction:column;gap:9px;}
+  .note{
+    background:rgba(255,255,255,.085);border-radius:12px;padding:11px 13px;
+    font-size:14px;line-height:1.7;color:#E7EFF9;
+  }
+  .note b{color:#FFC08C;font-weight:800;}
+  .note .nk{
+    display:inline-block;background:rgba(255,255,255,.2);color:#fff;
+    font-size:11.5px;border-radius:6px;padding:2px 8px;margin-right:8px;letter-spacing:.08em;
+  }
+
+  /* ========== template ========== */
+  .tplwrap{margin-top:12px;}
+  .tpl{overflow:hidden;border:2px solid var(--blue);}
+  .tpl-head{
+    background:linear-gradient(180deg,#2568E8,var(--blue-d));color:#fff;
+    padding:13px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+  .tpl-head .tic{
+    flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.22);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tpl-head .tic svg{width:15px;height:15px;display:block;}
+  .tpl-head b{font-size:19px;font-weight:800;}
+  .tpl-head span{font-size:13.5px;color:#F0F5FF;}
+  pre{
+    margin:0;padding:17px 16px;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,Meiryo,sans-serif;
+    font-size:15.5px;line-height:1.95;font-weight:700;color:var(--ink);
+    white-space:pre-wrap;word-break:normal;overflow-wrap:break-word;line-break:strict;
+    background:#fff;
+  }
+  .copy-wrap{padding:0 16px 16px;}
+  .copy{
+    width:100%;display:flex;align-items:center;justify-content:center;gap:10px;
+    background:linear-gradient(180deg,#2668DC,#123F97);color:#fff;
+    border:0;border-radius:14px;padding:16px 14px;cursor:pointer;
+    font-family:inherit;font-size:18px;font-weight:800;letter-spacing:.03em;line-height:1.4;
+    box-shadow:0 12px 22px -12px rgba(19,74,175,1);
+    transition:background .18s ease, box-shadow .18s ease, transform .08s ease;
+    -webkit-appearance:none;appearance:none;
+  }
+  .copy:active{transform:translateY(1px);}
+  .copy .cic{
+    flex:0 0 auto;width:20px;height:20px;position:relative;display:inline-block;
+  }
+  .copy .cic::before{
+    content:"";position:absolute;left:0;top:0;width:14px;height:16px;
+    border:2.5px solid rgba(255,255,255,.62);border-radius:4px;
+  }
+  .copy .cic::after{
+    content:"";position:absolute;left:5px;top:4px;width:14px;height:16px;
+    border:2.5px solid #fff;border-radius:4px;background:#2668DC;
+  }
+  .copy.ok{background:linear-gradient(180deg,#0B7D4B,#05633A);box-shadow:0 12px 22px -12px rgba(5,99,58,1);}
+  .copy.ok .cic::before{border-color:transparent;}
+  .copy.ok .cic::after{
+    content:"";left:3px;top:1px;width:9px;height:15px;background:transparent;
+    border:0;border-right:3px solid #fff;border-bottom:3px solid #fff;border-radius:1px;
+    transform:rotate(42deg);
+  }
+  .copy.ng{background:linear-gradient(180deg,#5F6E83,#44515F);box-shadow:none;font-size:15px;}
+  .tpl-foot{
+    background:var(--orange-s);border-top:1.5px solid #FAD6BB;
+    padding:13px 18px;font-size:14px;line-height:1.75;color:#7E3305;
+  }
+  .tpl-foot b{color:var(--orange-d);}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+  /* ========== checklist ========== */
+  .chk{display:flex;flex-direction:column;gap:11px;}
+  .chk-i{
+    display:flex;align-items:center;gap:13px;
+    background:#fff;border:1.5px solid #CFE6DC;border-left:6px solid var(--green);
+    border-radius:14px;padding:15px 16px;
+    box-shadow:0 1px 0 rgba(11,27,51,.03),0 14px 26px -18px rgba(11,27,51,.3);
+  }
+  .chk-i .box{
+    flex:0 0 auto;width:28px;height:28px;border-radius:8px;
+    background:var(--green-s);border:2px solid var(--green);position:relative;
+  }
+  .chk-i .box::after{
+    content:"";position:absolute;left:8px;top:3px;width:8px;height:14px;
+    border-right:3px solid var(--green);border-bottom:3px solid var(--green);
+    border-radius:1px;transform:rotate(42deg);
+  }
+  .chk-i span.t{font-size:17px;line-height:1.5;font-weight:800;}
+  .chk-i span.t small.how{display:block;font-size:13.5px;font-weight:700;color:#4A5A70;margin-top:3px;}
+
+  /* ========== footer ========== */
+  .last{
+    margin-top:22px;background:var(--navy);color:#fff;border-radius:var(--r);
+    padding:22px 22px 18px;text-align:center;
+  }
+  .last p{font-size:19px;font-weight:800;line-height:1.55;}
+  .last p u{text-decoration:none;background:rgba(255,255,255,.16);border-radius:6px;padding:1px 6px;}
+  .last small{display:block;margin-top:11px;font-size:12.5px;color:#93A8C3;letter-spacing:.07em;}
+
+  .nb{white-space:nowrap;}
+
+  /* ========== mobile ========== */
+  @media (max-width:520px){
+    body{padding:18px 11px 26px;}
+    .head{padding:24px 18px 18px;}
+    .wm{width:170px;height:170px;right:-22px;top:-26px;}
+    h1{font-size:33px;}
+    h1 .h1-pre{font-size:16px;letter-spacing:.03em;}
+    .meta{flex-direction:column;gap:7px;}
+    .meta div{font-size:14px;}
+    .sec-ttl{margin:26px 2px 12px;}
+    .sec-ttl h2{font-size:19px;}
+    .map{padding:14px 11px 12px;}
+    .map-grid{grid-template-columns:1fr 13px 1fr 13px 1fr;}
+    .node{padding:11px 4px 10px;gap:5px;border-radius:13px;}
+    .node svg{width:27px;height:27px;}
+    .node b{font-size:12.5px;}
+    .node i{font-size:10px;}
+    .ph-head{padding:16px 15px 14px;gap:11px;}
+    .ph-no{width:42px;height:42px;border-radius:13px;font-size:22px;}
+    .ph-tx h2{font-size:20px;}
+    .ph-tx p{font-size:14.5px;}
+    .ph-body{padding:14px 13px 15px;gap:11px;}
+    .lk{padding:12px 12px;}
+    .lk .ic{width:40px;height:40px;border-radius:12px;}
+    .lk .k{font-size:16px;}
+    .lk .go{font-size:12px;padding:6px 11px;}
+    .lk .u{font-size:10.5px;padding:7px 9px;}
+    .grp{font-size:14.5px;padding:10px 11px;}
+    .warn p{font-size:18px;}
+    .skl .row{font-size:13.5px;}
+    .skl .add .row{font-size:14.5px;}
+    .one .oc{font-size:13.5px;padding:10px 4px;}
+    .note{font-size:13px;}
+    .tpl-head b{font-size:17px;}
+    .tpl-head span{font-size:12.5px;}
+    pre{font-size:13px;line-height:1.95;padding:14px 13px;}
+    .copy{font-size:16.5px;padding:15px 12px;}
+    .copy-wrap{padding:0 13px 13px;}
+    .tpl-foot{font-size:13px;padding:12px 14px;}
+    .chk-i{padding:13px 13px;gap:11px;}
+    .chk-i span.t{font-size:15.5px;}
+    .last{padding:19px 16px 16px;}
+    .last p{font-size:16.5px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== ヘッダー ===== -->
+  <header class="card head">
+    <svg class="wm" viewBox="0 0 210 210" aria-hidden="true">
+      <circle cx="150" cy="58" r="74" fill="none" stroke="#1B5CDE" stroke-width="11" opacity=".07"/>
+      <circle cx="150" cy="58" r="48" fill="none" stroke="#E8540A" stroke-width="11" opacity=".08"/>
+      <circle cx="150" cy="58" r="22" fill="#1B5CDE" opacity=".06"/>
+    </svg>
+    <div class="badge-row">
+      <span class="badge"><i></i>クローザー共有用</span>
+    </div>
+    <h1><span class="h1-pre">松葉さん動画ローンチ</span>企画書図解</h1>
+    <div class="rule"></div>
+    <div class="meta">
+      <span class="mi"><span class="mk">案件</span><span><span class="nb">松葉美菜さん</span> 動画ローンチ</span></span>
+      <span class="mi"><span class="mk">対象</span><span>クローザー全員</span></span>
+    </div>
+  </header>
+
+  <!-- ===== 全体の流れ ===== -->
+  <div class="sec-ttl"><i class="bar"></i><h2>全体の流れ</h2><i class="fill"></i></div>
+  <section class="card map">
+    <div class="map-grid">
+      <div class="node">
+        <span class="no">1</span>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="7" y="4" width="18" height="24" rx="3.5" fill="#fff" stroke="#1B5CDE" stroke-width="2.2"/>
+          <path d="M11.5 11h13M11.5 16h13M11.5 21h8" stroke="#4585F2" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <b>事前準備</b>
+        <i>企画書・動画</i>
+      </div>
+      <div class="chev"><span></span></div>
+      <div class="node">
+        <span class="no">2</span>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="4" y="6" width="24" height="16" rx="3" fill="#fff" stroke="#1B5CDE" stroke-width="2.2"/>
+          <path d="M16 22v4M11 27h10" stroke="#4585F2" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M9 17l4.5-5 3.5 3.6 3-3.1L23 17" fill="none" stroke="#4585F2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <b>クロージング</b>
+        <i>いつも通り</i>
+      </div>
+      <div class="chev"><span></span></div>
+      <div class="node acc">
+        <span class="no">3</span>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M5 7h22v14H14l-6 5v-5H5z" fill="#fff" stroke="#E8540A" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M11 12h10M11 16.5h7" stroke="#FF8B3E" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <b>面談報告</b>
+        <i>専用テンプレ</i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== フェーズ1 ===== -->
+  <div class="sec-ttl"><i class="bar"></i><h2>やること</h2><i class="fill"></i></div>
+  <section class="card ph">
+    <div class="ph-head">
+      <div class="ph-no">1</div>
+      <div class="ph-tx">
+        <h2>事前準備</h2>
+        <p>企画書を読んでから、解説動画を見ます。</p>
+      </div>
+    </div>
+    <div class="ph-body">
+      <a class="lk" href="https://docs.google.com/document/d/1XMRd-mx8ZpNkFpELjOs6T8JF1NtcdN3mFAejNG4HTHU/edit?usp=sharing" target="_blank" rel="noopener">
+        <span class="lk-top">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4.5" y="2.5" width="15" height="19" rx="2.6" fill="#EDF3FE" stroke="#1B5CDE" stroke-width="2"/>
+              <path d="M8 8h8M8 12h8M8 16h5" stroke="#1B5CDE" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="bd">
+            <b class="k">企画書</b>
+            <span class="t">Googleドキュメント</span>
+          </span>
+          <span class="go">開く</span>
+        </span>
+        <span class="u">https://docs.google.com/document/d/1XMRd-mx8ZpNkFpELjOs6T8JF1NtcdN3mFAejNG4HTHU/edit?usp=sharing</span>
+      </a>
+      <a class="lk" href="https://www.loom.com/share/43d86c61a4194ea7918fe4647d18f2d4" target="_blank" rel="noopener">
+        <span class="lk-top">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2.5" y="4.5" width="19" height="15" rx="3" fill="#EDF3FE" stroke="#1B5CDE" stroke-width="2"/>
+              <path d="M10 8.8l5.4 3.2-5.4 3.2z" fill="#1B5CDE"/>
+            </svg>
+          </span>
+          <span class="bd">
+            <b class="k">解説動画</b>
+            <span class="t">Loom</span>
+          </span>
+          <span class="go">開く</span>
+        </span>
+        <span class="u">https://www.loom.com/share/43d86c61a4194ea7918fe4647d18f2d4</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="rail"><i></i><i></i><i></i><span class="tip"></span></div>
+
+  <!-- ===== フェーズ2 ===== -->
+  <section class="card ph">
+    <div class="ph-head">
+      <div class="ph-no">2</div>
+      <div class="ph-tx">
+        <h2>クロージング</h2>
+        <p>いつものAIアフィと同じ資料・メッセージを、そのまま使います。</p>
+      </div>
+    </div>
+    <div class="ph-body">
+      <a class="lk" href="https://canva.link/7df8rqw2dhewf2o" target="_blank" rel="noopener">
+        <span class="lk-top">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2.5" y="3.5" width="19" height="13" rx="2.4" fill="#EDF3FE" stroke="#1B5CDE" stroke-width="2"/>
+              <path d="M12 16.5v4M8 21h8" stroke="#1B5CDE" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="bd">
+            <b class="k">クロージング資料</b>
+            <span class="t">Canva</span>
+          </span>
+          <span class="go">開く</span>
+        </span>
+        <span class="u">https://canva.link/7df8rqw2dhewf2o</span>
+      </a>
+      <a class="lk" href="https://docs.google.com/spreadsheets/d/1DiZzLvkrnJsROM6CIRcutKjbuhMibE2vlQJOeqYpZIw/edit?usp=sharing" target="_blank" rel="noopener">
+        <span class="lk-top">
+          <span class="ic">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3.5" width="18" height="17" rx="2.4" fill="#EDF3FE" stroke="#1B5CDE" stroke-width="2"/>
+              <path d="M3 9h18M10 9v11.5" stroke="#1B5CDE" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="bd">
+            <b class="k">成約後メッセージ</b>
+            <span class="t">Googleスプレッドシート</span>
+          </span>
+          <span class="go">開く</span>
+        </span>
+        <span class="u">https://docs.google.com/spreadsheets/d/1DiZzLvkrnJsROM6CIRcutKjbuhMibE2vlQJOeqYpZIw/edit?usp=sharing</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="rail"><i></i><i></i><i></i><span class="tip"></span></div>
+
+  <!-- ===== フェーズ3 ===== -->
+  <section class="card ph ph3">
+    <div class="ph-head">
+      <div class="ph-no">3</div>
+      <div class="ph-tx">
+        <h2>面談報告＋動画依頼</h2>
+        <p>報告と一緒に、松葉さんへ動画を依頼します。</p>
+      </div>
+    </div>
+    <div class="ph-body">
+
+      <div class="grp">
+        <span class="gic">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="5.6" cy="5.2" r="2.6" fill="#fff"/>
+            <circle cx="11.2" cy="6" r="2.1" fill="#fff" opacity=".8"/>
+            <path d="M1.4 13.4c.5-2.5 2.2-3.8 4.2-3.8s3.7 1.3 4.2 3.8z" fill="#fff"/>
+            <path d="M11 9.7c1.7 0 3 1 3.5 3.1h-2.8" fill="#fff" opacity=".8"/>
+          </svg>
+        </span>
+        松葉さんローンチ面談報告用グループ
+      </div>
+
+      <div class="warn">
+        <span class="tag"><em>!</em>いつもと違うところ</span>
+        <p>いつものテンプレは使いません。<u>専用テンプレ</u>で報告します。</p>
+      </div>
+
+      <div class="skl">
+        <div class="same">
+          <div class="skl-h"><em></em>いつもと同じ</div>
+          <div class="skl-rows">
+            <div class="row">【報告】</div>
+            <div class="row">日時：</div>
+            <div class="row">導線：</div>
+            <div class="row">LINE名：</div>
+            <div class="row">成約結果：</div>
+            <div class="row">録画：</div>
+          </div>
+        </div>
+        <div class="add">
+          <div class="skl-h"><em>+</em>ここが今回の追加（録画：の下）</div>
+          <div class="skl-rows">
+            <div class="row">@美菜さん</div>
+            <div class="row">【依頼】</div>
+            <div class="row">撮ってほしい動画の内容</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="one">
+        <span class="one-k">1つの投稿にまとめて出す</span>
+        <div class="one-in">
+          <span class="oc a">報告</span>
+          <span class="plus">＋</span>
+          <span class="oc b">依頼（@美菜さん）</span>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="note"><span class="nk">ねらい</span><b>クーオフ</b>＝クーリングオフ。決まった売上を取りこぼさないための動画です。</div>
+        <div class="note"><span class="nk">応用</span>成約できそうなお客様には、成約前に頼んでもOK。使うかは各クローザーの判断です。</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== 専用テンプレ ===== -->
+  <div class="tplwrap">
+  <section class="card tpl">
+    <div class="tpl-head">
+      <span class="tic">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <rect x="1.6" y="1.6" width="9" height="11" rx="1.8" fill="none" stroke="#fff" stroke-width="1.8" opacity=".7"/>
+          <rect x="5.4" y="4.4" width="9" height="11" rx="1.8" fill="#1B5CDE" stroke="#fff" stroke-width="1.8"/>
+        </svg>
+      </span>
+      <b>専用テンプレ</b>
+      <span>そのままコピーして使う</span>
+    </div>
+<pre id="tplText">【報告】
+日時：10/2 11:00
+導線：🟣📅【@317xrqnz】SNSコンサル『AIマネタイズの教科書』　<span class="nb">松葉美菜さん</span>用
+LINE名：
+成約結果：
+録画：
+
+@美菜さん
+【依頼】
+以下内容で動画撮影をお願いします！
+・自分が本当に稼げるかの不安が拭いきれていないので、生徒実績が出ていることや<span class="nb">松葉さん</span>自身も結果が出ずに苦労したけど、ONEでは稼げたという内容の話
+・半年で50万円稼いで脱サラしたいらしいので、そこを目指して一緒に頑張りましょうという話</pre>
+    <div class="copy-wrap">
+      <button class="copy" id="copyBtn" type="button">
+        <span class="cic" aria-hidden="true"></span>
+        <span id="copyLabel">テンプレをコピー</span>
+      </button>
+      <span class="sr" id="copyLive" aria-live="polite"></span>
+    </div>
+    <p class="tpl-foot">日時・LINE名・成約結果の記入欄と、<b>【依頼】の「・」から始まる2行</b>は記入例です。案件ごとに書き換えてください。@美菜さん＝<span class="nb">松葉美菜さん</span>のメンションです。</p>
+  </section>
+  </div>
+
+  <!-- ===== 忘れずに ===== -->
+  <div class="sec-ttl"><i class="bar"></i><h2>忘れずに</h2><i class="fill"></i></div>
+  <section class="chk">
+    <div class="chk-i"><span class="box"></span><span class="t">面談後の特典配布<small class="how">特典配布はUTAGEのアクションで設定</small></span></div>
+    <div class="chk-i"><span class="box"></span><span class="t">松葉さんにフォロー動画の撮影依頼をかける</span></div>
+  </section>
+
+  <div class="last">
+    <p>成約したお客様は<u>全員</u>、<span class="nb">松葉さん本人</span>に動画を撮ってもらいます。</p>
+    <small>※社内向け資料</small>
+  </div>
+
+</div>
+<script>
+(function(){
+  var TPL_LINES = [
+    "【報告】",
+    "日時：10/2 11:00",
+    "導線：🟣📅【@317xrqnz】SNSコンサル『AIマネタイズの教科書』　松葉美菜さん用",
+    "LINE名：",
+    "成約結果：",
+    "録画：",
+    "",
+    "@美菜さん",
+    "【依頼】",
+    "以下内容で動画撮影をお願いします！",
+    "・自分が本当に稼げるかの不安が拭いきれていないので、生徒実績が出ていることや松葉さん自身も結果が出ずに苦労したけど、ONEでは稼げたという内容の話",
+    "・半年で50万円稼いで脱サラしたいらしいので、そこを目指して一緒に頑張りましょうという話"
+  ];
+  var TPL = TPL_LINES.join("\n");
+
+  var btn   = document.getElementById("copyBtn");
+  var label = document.getElementById("copyLabel");
+  var live  = document.getElementById("copyLive");
+  var timer = null;
+
+  function legacyCopy(text){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "0";
+      ta.style.left = "0";
+      ta.style.width = "2em";
+      ta.style.height = "2em";
+      ta.style.padding = "0";
+      ta.style.border = "none";
+      ta.style.outline = "none";
+      ta.style.boxShadow = "none";
+      ta.style.background = "transparent";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      if (ta.setSelectionRange) { ta.setSelectionRange(0, text.length); }
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      return !!ok;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function flash(state, msg){
+    btn.classList.remove("ok", "ng");
+    if (state) { btn.classList.add(state); }
+    label.textContent = msg;
+    live.textContent = msg;
+    if (timer) { clearTimeout(timer); }
+    timer = setTimeout(function(){
+      btn.classList.remove("ok", "ng");
+      label.textContent = "テンプレをコピー";
+      live.textContent = "";
+    }, 2600);
+  }
+
+  function done(){ flash("ok", "コピーしました"); }
+  function fail(){ flash("ng", "コピーできません。枠の中を選んでコピーしてください"); }
+
+  function fallback(){
+    if (legacyCopy(TPL)) { done(); } else { fail(); }
+  }
+
+  btn.addEventListener("click", function(){
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function"){
+      navigator.clipboard.writeText(TPL).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
+</body>
+</html>
