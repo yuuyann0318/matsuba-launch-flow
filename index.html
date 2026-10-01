@@ -221,6 +221,8 @@
     font-size:13px;line-height:1;font-weight:800;
   }
   .dst .dsub{font-size:13.5px;line-height:1.7;color:#CFDDF0;}
+  .dst .rpt{border-radius:12px;padding:13px 14px;font-size:14.5px;line-height:1.85;}
+  .dst .copy{padding:13px 14px;font-size:16.5px;border-radius:12px;}
 
   /* LINEボタン */
   .lcta{
@@ -563,7 +565,7 @@
 
       <div class="warn">
         <span class="tag"><em>!</em>忘れずに</span>
-        <p><span class="nb">松葉さん（集客者）</span>を<u>必ず招待</u>する！</p>
+        <p>決済グループに<span class="nb">松葉さん（集客者）</span>を<u>必ず招待</u>する！</p>
         <a class="lcta" href="https://line.me/ti/p/E82XrRsHKq" target="_blank" rel="noopener">
           <span class="lc-top">
             <span class="ic">
@@ -619,7 +621,19 @@
             </span>
             松葉さんローンチ面談報告用グループ
           </div>
-          <span class="dsub">いつも通りの報告でOK。決まったテンプレはありません。</span>
+          <span class="dsub">下の報告テンプレで投稿します。（全導線グループでの報告と一緒です）</span>
+<pre class="rpt" id="rptText">【報告】
+日時：10/2 11:00
+導線：🟣📅【@317xrqnz】SNSコンサル『AIマネタイズの教科書』　松葉美菜さん用
+LINE名：
+成約結果：
+録画：</pre>
+          <button class="copy" id="copyBtn2" type="button">
+            <span class="cic" aria-hidden="true"></span>
+            <span id="copyLabel2">テンプレをコピー</span>
+          </button>
+          <span class="sr" id="copyLive2" aria-live="polite"></span>
+          <span class="dsub">日時は記入例です。面談ごとに書き換えてください。</span>
         </div>
 
         <div class="dst acc">
@@ -706,11 +720,6 @@
   ];
   var TPL = TPL_LINES.join("\n");
 
-  var btn   = document.getElementById("copyBtn");
-  var label = document.getElementById("copyLabel");
-  var live  = document.getElementById("copyLive");
-  var timer = null;
-
   function legacyCopy(text){
     try{
       var ta = document.createElement("textarea");
@@ -740,33 +749,49 @@
     }
   }
 
-  function flash(state, msg){
-    btn.classList.remove("ok", "ng");
-    if (state) { btn.classList.add(state); }
-    label.textContent = msg;
-    live.textContent = msg;
-    if (timer) { clearTimeout(timer); }
-    timer = setTimeout(function(){
+  function bindCopy(btnId, labelId, liveId, getText){
+    var btn   = document.getElementById(btnId);
+    var label = document.getElementById(labelId);
+    var live  = document.getElementById(liveId);
+    if (!btn || !label || !live) { return; }
+    var timer = null;
+
+    function flash(state, msg){
       btn.classList.remove("ok", "ng");
-      label.textContent = "テンプレをコピー";
-      live.textContent = "";
-    }, 2600);
-  }
-
-  function done(){ flash("ok", "コピーしました"); }
-  function fail(){ flash("ng", "コピーできません。枠の中を選んでコピーしてください"); }
-
-  function fallback(){
-    if (legacyCopy(TPL)) { done(); } else { fail(); }
-  }
-
-  btn.addEventListener("click", function(){
-    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function"){
-      navigator.clipboard.writeText(TPL).then(done, fallback);
-    } else {
-      fallback();
+      if (state) { btn.classList.add(state); }
+      label.textContent = msg;
+      live.textContent = msg;
+      if (timer) { clearTimeout(timer); }
+      timer = setTimeout(function(){
+        btn.classList.remove("ok", "ng");
+        label.textContent = "テンプレをコピー";
+        live.textContent = "";
+      }, 2600);
     }
-  });
+
+    function done(){ flash("ok", "コピーしました"); }
+    function fail(){ flash("ng", "コピーできません。枠の中を選んでコピーしてください"); }
+
+    function fallback(text){
+      if (legacyCopy(text)) { done(); } else { fail(); }
+    }
+
+    btn.addEventListener("click", function(){
+      var text = getText();
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function"){
+        navigator.clipboard.writeText(text).then(done, function(){ fallback(text); });
+      } else {
+        fallback(text);
+      }
+    });
+  }
+
+  bindCopy("copyBtn", "copyLabel", "copyLive", function(){ return TPL; });
+
+  var rpt = document.getElementById("rptText");
+  if (rpt) {
+    bindCopy("copyBtn2", "copyLabel2", "copyLive2", function(){ return rpt.textContent; });
+  }
 })();
 </script>
 <script>
